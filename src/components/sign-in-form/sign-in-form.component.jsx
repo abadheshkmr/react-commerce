@@ -6,29 +6,28 @@ import {
     signInAuthUserWithEmailAndPasswordCustom
  } 
     from "../../utils/firebase/firebase.utils";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import './sign-in-form.styles.scss';
+
 
 const defaultFormFields = {
     email: '',
     password: ''
 }
+
 const SignInForm = () => {
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     console.log(formFields);
     const {email, password } = formFields;
-    
-    const resetFormFields = () => {
-        setFormFields(defaultFormFields);
-    }
+
 
     const signInWithGoogle = async () => {
         const userDocRef  = await signInWithGooglePopup();
         console.log(userDocRef);
-        await createUserDocumentFromAuth(userDocRef.auth);
+  
     }
 
     const handleSubmit = async (event) => {
@@ -36,7 +35,8 @@ const SignInForm = () => {
     try {
         const {user} = await signInAuthUserWithEmailAndPasswordCustom(email,password);
         //console.log(user);
-        resetFormFields();
+        //setCurrentUser(user);
+        //resetFormFields();
     }catch(err){
         switch (err.code) {
             case 'auth/invalid-credential':
