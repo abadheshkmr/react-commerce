@@ -1,12 +1,18 @@
-import { createContext, useEffect, useState } from "react";
-import { onAuthStateChangedListiener, createUserDocumentFromAuth } from "../utils/firebase/firebase.utils";
+import { createContext, useState } from "react";
+import PRODUCTS from '../shop-data.json';
 
-
-export const UserContext = createContext({
-    currentUser: null,
-    setCurrentUser: () => null
+export const ProductsContext = createContext({
+    products: []
 });
 
+export const ProductsProvider = ({children}) => {
+    const [products, setProducts] = useState(PRODUCTS);
+    const value = {products};
+    return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>
+}
+
+
+/*
 export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
     const value = {currentUser, setCurrentUser};
@@ -23,4 +29,4 @@ export const UserProvider = ({children}) => {
     },[]);
     return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }
-
+    */
