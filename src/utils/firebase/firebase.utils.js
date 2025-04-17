@@ -109,7 +109,7 @@ const firebaseConfig = {
      
   }
 
-  export const signInAuthUserWithEmailAndPasswordCustom = async (email, password) => {
+  export const signInAuthUserWithEmailAndPassword = async (email, password) => {
     if(!email || !password) {
        return;
     }
