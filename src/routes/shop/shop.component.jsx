@@ -10,7 +10,7 @@ import Category from '../../components/category/category.component';
 const Shop = () => {
   
   const {categoriesMap} = useContext(CategoriesContext);
-  console.log(categoriesMap); 
+  //console.log(categoriesMap); 
   return (
    <Routes>
     <Route index element={<CategoriesPreview />}/>

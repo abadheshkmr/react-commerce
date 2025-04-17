@@ -69,7 +69,7 @@ const firebaseConfig = {
       acc[title.toLowerCase()] = items;
       return acc;
     }, {});
-  console.log(categoryMap);
+  //console.log(categoryMap);
     return categoryMap;
   };
 
@@ -78,11 +78,11 @@ const firebaseConfig = {
     if(!usetAuth) return;
 
     const userDocRef = doc(db, 'users', usetAuth.uid);
-    console.log(userDocRef);
+    //console.log(userDocRef);
 
     const snapshot = await getDoc(userDocRef);
-    console.log(snapshot);
-    console.log(snapshot.exists());
+    //console.log(snapshot);
+    //console.log(snapshot.exists());
     if (!snapshot.exists()) {
         const {displayName, email} = usetAuth;
         const createAt = new Date();
