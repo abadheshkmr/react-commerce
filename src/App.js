@@ -10,8 +10,28 @@ import Checkout from "./routes/checkout/checkout.component";
 
 
 
+import {useEffect } from "react";
+import { onAuthStateChangedListiener, createUserDocumentFromAuth } from "./utils/firebase/firebase.utils";
+import { setCurrentUser } from "./store/user/user.action";
+import { useDispatch } from "react-redux";
 
-const App = () => { return (
+
+
+const App = () => { 
+  const dispatch = useDispatch();
+  
+   useEffect(() =>{
+         const unsubscribe =  onAuthStateChangedListiener(async (user) => {
+          if (user) {
+            await createUserDocumentFromAuth(user);
+          }
+          console.log('Dispatching user:', user);
+          dispatch(setCurrentUser(user));
+         });
+         return unsubscribe;
+      },[]);
+     
+  return (
 
   <Routes>
     <Route path="/" element={ <Navigation />}>
